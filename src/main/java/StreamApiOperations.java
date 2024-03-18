@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,5 +34,17 @@ public class StreamApiOperations {
 
     public static List<String> sortedBySize(List<String> list){
         return list.stream().sorted(Comparator.comparingInt(String::length)).toList();
+    }
+
+    public static boolean checkLetter(List<String> list, char letter){
+        return list.stream().allMatch(word -> word.charAt(0) == letter);
+    }
+
+    public static List<String> deleteNull(List<String> list){
+        return list.stream().filter(Objects::nonNull).toList();
+    }
+
+    public static List<String> deleteDuplicates(List<String> list){
+        return list.stream().distinct().toList();
     }
 }

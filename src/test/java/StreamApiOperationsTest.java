@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StreamApiOperationsTest {
@@ -67,5 +67,31 @@ public class StreamApiOperationsTest {
         sortedList.add("Elephant");
 
         Assertions.assertEquals(sortedList, StreamApiOperations.sortedBySize(list));
+    }
+
+    @Test
+    void checkLetter(){
+        List<String> list = new ArrayList<>();
+        list.add("cat");
+        list.add("christmas");
+        list.add("crazy");
+
+        Assertions.assertTrue(StreamApiOperations.checkLetter(list, 'c'));
+    }
+
+    @Test
+    void deleteNull(){
+        List<String> list = Arrays.asList("car", null, null, "dog", "cat", null);
+        List<String> correctList = Arrays.asList("car", "dog", "cat");
+
+        Assertions.assertEquals(correctList, StreamApiOperations.deleteNull(list));
+    }
+
+    @Test
+    void deleteDuplicates(){
+        List<String> list = Arrays.asList("car", "car", "dog", "cat", "dog");
+        List<String> correctList = Arrays.asList("car", "dog", "cat");
+
+        Assertions.assertEquals(correctList, StreamApiOperations.deleteDuplicates(list));
     }
 }
